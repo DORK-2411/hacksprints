@@ -77,9 +77,8 @@ export default function CareerCard({
             {Array.from({ length: 5 }).map((_, i) => (
               <div
                 key={i}
-                className={`h-2 w-full rounded-full transition-colors ${
-                  i < career.demand_level ? 'bg-violet-500' : 'bg-white/10'
-                }`}
+                className={`h-2 w-full rounded-full transition-colors ${i < career.demand_level ? 'bg-violet-500' : 'bg-white/10'
+                  }`}
               />
             ))}
           </div>

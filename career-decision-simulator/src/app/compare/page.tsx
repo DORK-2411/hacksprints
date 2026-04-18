@@ -76,7 +76,7 @@ export default function ComparePage() {
             Back
           </Link>
           <span className="font-bold text-white text-sm tracking-tight">
-            Career<span className="gradient-text">Sim</span> — Comparator
+            Path<span className="gradient-text">Finder</span> — Comparator
           </span>
           <div className="w-16" />
         </nav>

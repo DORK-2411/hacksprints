@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetchCareers, Career, getTrend } from '@/lib/api';
+import PremiumDivider from '@/components/PremiumDivider';
+import UserMenu from '@/components/ui/UserMenu';
 
 const MARQUEE_ITEMS = [
   'Software Engineer', 'Data Scientist', 'Product Manager', 'AI/ML Engineer',
@@ -64,22 +66,18 @@ export default function HomePage() {
               </svg>
             </div>
             <span className="font-bold text-white tracking-tight">
-              Career<span className="gradient-text">Sim</span>
+              Path<span className="gradient-text">Finder</span>
             </span>
           </Link>
 
           <div className="hidden md:flex items-center gap-6 text-sm text-white/60">
             <a href="#features" className="hover:text-white transition-colors">Features</a>
             <a href="#careers" className="hover:text-white transition-colors">Careers</a>
+            <Link href="/chatbot" className="hover:text-white transition-colors">AI Advisor</Link>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </div>
 
-          <Link
-            href="/compare"
-            className="btn-primary px-4 py-2 rounded-xl text-sm font-semibold text-white"
-          >
-            Start Comparing →
-          </Link>
+          <UserMenu />
         </nav>
       </header>
 
@@ -109,20 +107,21 @@ export default function HomePage() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-up" style={{ animationDelay: '0.3s' }}>
             <Link
-              href="/compare"
+              href="/auth"
               className="btn-primary px-8 py-4 rounded-2xl text-base font-bold text-white inline-flex items-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
-              Simulate My Career
+              Start My Career Journey
             </Link>
-            <a
-              href="#features"
-              className="px-8 py-4 rounded-2xl text-base font-semibold text-white/70 border border-white/10 hover:bg-white/5 hover:text-white transition-all duration-300"
+            <Link
+              href="/chatbot"
+              className="px-8 py-4 rounded-2xl text-base font-semibold text-white/70 border border-white/10 hover:bg-white/5 hover:text-white transition-all duration-300 inline-flex items-center gap-2"
             >
-              See How It Works
-            </a>
+              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+              Ask AI Advisor
+            </Link>
           </div>
 
           {/* Stats */}
@@ -138,7 +137,8 @@ export default function HomePage() {
       </section>
 
       {/* ─── Marquee ─── */}
-      <div className="py-6 border-y border-white/5 overflow-hidden">
+      <div className="py-6 overflow-hidden">
+        <PremiumDivider />
         <div className="flex animate-marquee whitespace-nowrap gap-8">
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
             <span key={i} className="text-sm font-semibold text-white/25 flex items-center gap-3">
@@ -231,7 +231,7 @@ export default function HomePage() {
 
       {/* ─── Careers Preview ─── */}
       <section id="careers" className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="section-divider mb-16" />
+        <PremiumDivider />
         <div className="flex items-end justify-between mb-8">
           <div>
             <p className="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-2">Live Data</p>
@@ -281,6 +281,39 @@ export default function HomePage() {
         )}
       </section>
 
+      {/* ─── AI Advisor promo ─── */}
+      <section className="max-w-7xl mx-auto px-6 pb-16">
+        <div className="relative rounded-3xl overflow-hidden border border-cyan-500/20 bg-gradient-to-br from-[#0a1628] to-[#060610] p-8 md:p-12">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/5 to-blue-600/3 pointer-events-none" />
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-xs font-semibold text-cyan-300 mb-5">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                New — AI Career Advisor
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
+                Chat With Your <span style={{ background: 'linear-gradient(135deg,#00d4ff,#0ea5e9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>AI Advisor</span>
+              </h2>
+              <p className="text-white/50 mb-6 max-w-md">
+                Ask anything — salary ranges, skill roadmaps, career comparisons, interview tips.
+                Powered by Claude AI with voice input support.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/chatbot" className="px-6 py-3 rounded-xl text-sm font-bold text-black inline-flex items-center gap-2" style={{ background: 'linear-gradient(135deg,#00d4ff,#0ea5e9)' }}>
+                  Open AI Chat →
+                </Link>
+                <Link href="/auth" className="px-6 py-3 rounded-xl border border-white/10 text-sm font-semibold text-white/60 hover:text-white hover:bg-white/5 transition-all">
+                  Full Career Analysis
+                </Link>
+              </div>
+            </div>
+            <div className="shrink-0 w-48 h-48 rounded-3xl flex items-center justify-center text-6xl" style={{ background: 'rgba(0,212,255,0.06)', border: '1px solid rgba(0,212,255,0.15)' }}>
+              ✦
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── CTA ─── */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
         <div className="relative rounded-3xl overflow-hidden border border-violet-500/20 bg-gradient-to-br from-violet-900/30 to-pink-900/20 p-12 text-center animate-pulse-glow">
@@ -293,10 +326,10 @@ export default function HomePage() {
             the most important career decision of your life.
           </p>
           <Link
-            href="/compare"
+            href="/auth"
             className="btn-primary px-10 py-4 rounded-2xl text-base font-bold text-white inline-flex items-center gap-2 relative"
           >
-            Launch Simulator Now
+            Start My Career Journey
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
@@ -335,14 +368,16 @@ export default function HomePage() {
       </section>
 
       {/* ─── Footer ─── */}
-      <footer className="border-t border-white/5 py-8">
+      <PremiumDivider />
+      <footer className="py-8">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-white/30">
-            © 2025 CareerSim. Built with precision for your future.
+            © 2025 PathFinder. Built with precision for your future.
           </p>
-          <Link href="/compare" className="text-sm font-semibold text-violet-400 hover:text-violet-300 transition-colors">
-            Start Comparing Careers →
-          </Link>
+          <div className="flex gap-4">
+            <Link href="/auth" className="text-sm font-semibold text-violet-400 hover:text-violet-300 transition-colors">Start Journey →</Link>
+            <Link href="/chatbot" className="text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors">AI Advisor →</Link>
+          </div>
         </div>
       </footer>
     </div>

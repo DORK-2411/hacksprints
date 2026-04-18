@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
-:root {
+/* ── Dark theme (default) ─────────────────────────────────────────────────── */
+:root,
+[data-theme="dark"] {
   --color-bg: #060610;
   --color-bg-2: #0b0b1a;
   --color-surface: rgba(255,255,255,0.04);
   --color-border: rgba(255,255,255,0.08);
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255,255,255,0.4);
   --color-violet: #8b5cf6;
   --color-pink: #ec4899;
   --color-emerald: #10b981;
@@ -12,6 +16,34 @@
   --color-blue: #3b82f6;
   --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
 }
+
+/* ── Light theme ──────────────────────────────────────────────────────────── */
+[data-theme="light"] {
+  --color-bg: #f5f5f7;
+  --color-bg-2: #ffffff;
+  --color-surface: rgba(0,0,0,0.03);
+  --color-border: rgba(0,0,0,0.08);
+  --color-text: #0a0a14;
+  --color-text-muted: rgba(0,0,0,0.45);
+  --color-violet: #7c3aed;
+  --color-pink: #db2777;
+}
+
+/* ── Luxury theme ─────────────────────────────────────────────────────────── */
+[data-theme="luxury"] {
+  --color-bg: #0b0b0f;
+  --color-bg-2: #111118;
+  --color-surface: rgba(212,175,55,0.05);
+  --color-border: rgba(212,175,55,0.12);
+  --color-text: #f5e6c8;
+  --color-text-muted: rgba(245,230,200,0.4);
+  --color-violet: #d4af37;
+  --color-pink: #c5986a;
+}
+
+/* Applied by ThemeProvider */
+body { transition: background 0.4s ease, color 0.4s ease; }
+
 
 * {
   box-sizing: border-box;
