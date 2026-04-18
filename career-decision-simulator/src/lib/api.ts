@@ -9,6 +9,7 @@ export interface Career {
   demand_level: number;
   category: string;
   description: string;
+  emoji?: string;  // optional emoji for display in UI
 }
 
 // Fetch all careers from InsForge
